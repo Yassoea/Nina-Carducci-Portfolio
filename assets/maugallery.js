@@ -49,7 +49,7 @@
     navigation: true
   };
   $.fn.mauGallery.listeners = function(options) {
-    $(".gallery-item").on("click", function() {
+    $(".img-fluid").on("click", function() {
       if (options.lightBox && $(this).prop("tagName") === "IMG") {
         $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
       } else {
