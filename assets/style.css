@@ -109,6 +109,7 @@ body {
 	position: relative;
 	margin-bottom: 0 !important;
 	padding: 0;
+	
 }
 .item-column::after{
 	content: "";
@@ -117,11 +118,12 @@ body {
 
 }
 .gallery-item {
-	position: absolute;
+	position: relative;
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	object-fit: cover;
 	padding: .5em;
+	
 }
 .mg-prev, .mg-next {
 	width: 30px;
@@ -349,5 +351,69 @@ input[type="submit"] {
 	.picture {
 		width: 80%;
 	}
+}
+footer {
+    background-color: #E5975F;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+footer h2 {
+    font-size: 24px;
+    color: #fffefe;
+    margin-bottom: 15px;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.location, .phone {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.location p, .phone p {
+    margin: 0;
+}
+
+.location p, .location span, .phone strong {
+    margin-left: 10px;
+}
+
+.location:before {
+    content: "\f3c5"; /* Font Awesome icon for location */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #333;
+    font-size: 20px;
+}
+
+.phone:before {
+    content: "\f095"; /* Font Awesome icon for phone */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #333;
+    font-size: 20px;
+}
+
+.phone strong {
+    color: #333;
+    font-size: 18px;
+}
+
+.phone p:before {
+    content: "\f017"; /* Font Awesome icon for clock */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #333;
+    font-size: 20px;
+    margin-right: 10px;
 }
 

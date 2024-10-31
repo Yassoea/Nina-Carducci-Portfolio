@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter&family=Spectral:ital,wght@0,400;1,300;1,400;1,800&display=swap" rel="stylesheet">
 	<meta charset="UTF-8">
 	<script src="./assets/bootstrap/bootstrap.bundle.js"></script>
@@ -23,7 +24,7 @@
 				<li><a href="#gallery">Galerie</a></li>
 				<li><a href="#services">Service</a></li>
 				<li><a href="#contact">Contact</a></li>
-				<li><a class="social-link" href="https://www.instagram.com/ninacarducci.photo/?hl=fr" target="_blank"><img src="assets/images/instagram.png" alt="Instagram"></a></li>
+				<li><a class="social-link" href="https://www.instagram.com/ninacarducci.photo/?hl=fr" target="_blank"><img src="assets/images/instagram.webp" alt="Instagram"></a></li>
 			</ul>
 		</nav>
 	</header>
@@ -60,7 +61,7 @@
 
 		<section id="about">
 			<div class="picture left">
-				<img src="./assets/images/nina.png" alt="Nina Carducci">
+				<img src="./assets/images/nina.webp" alt="Nina Carducci">
 			</div>
 			<div id="about-me">
 				<h3 class="about-me__title">À propos de moi</h3>
@@ -73,16 +74,16 @@
 		<section id="gallery">
 			<h3 class="title">Portfolio</h3>
 			<div class="container py-3">
-				<div class="gallery" style="display: none">
-					<img data-gallery-tag="Concert" class="gallery-item" src="./assets/images/gallery/concerts/aaron-paul-wnX-fXzB6Cw-unsplash.jpg" alt="Concert featuring Aaron Paul"/>
-					<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/ali-morshedlou-WMD64tMfc4k-unsplash.jpg" alt="Business event with Ali Morshedlou"/>
-					<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/jason-goodman-tHO1_OuKbg0-unsplash.jpg" alt="Corporate meeting led by Jason Goodman"/>
-					<img data-gallery-tag="Mariages" class="gallery-item" src="./assets/images/gallery/mariage/hannah-busing-RvF2R_qMpRk-unsplash.jpg" alt="Wedding ceremony captured by Hannah Busing"/>
-					<img data-gallery-tag="Portrait" class="gallery-item" src="./assets/images/gallery/portraits/ade-tunji-rVkhWWZFAtQ-unsplash.jpg" alt="Portrait of Ade Tunji"/>
-					<img data-gallery-tag="Mariages" class="gallery-item" src="./assets/images/gallery/mariage/jakob-owens-SiniLJkXhMc-unsplash.jpg" alt="Wedding celebration with Jakob Owens"/>
-					<img data-gallery-tag="Portrait" class="gallery-item" src="./assets/images/gallery/portraits/nino-van-prattenburg--443cl1uR_8-unsplash.jpg" alt="Portrait of Nino Van Prattenburg"/>
-					<img data-gallery-tag="Concert" class="gallery-item" src="./assets/images/gallery/concerts/austin-neill-hgO1wFPXl3I-unsplash.jpg" alt="Concert featuring Austin Neill"/>
-					<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/mateus-campos-felipe-Fsgzm8N0hIY-unsplash.jpg" alt="Corporate presentation by Mateus Campos Felipe"/>
+				<div class="gallery " style="display: none"  >
+					<img data-gallery-tag="Concert" class="gallery-item" src="./assets/images/gallery/concerts/aaron-paul-wnX-fXzB6Cw-unsplash (2).jpg" alt="Concert featuring Aaron Paul" loading="lazy"/>
+					<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/ali-morshedlou-WMD64tMfc4k-unsplash-min.jpg" alt="Business event with Ali Morshedlou" loading="lazy"/>
+					<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/jason-goodman-tHO1_OuKbg0-unsplash-min.jpg" alt="Corporate meeting led by Jason Goodman" loading="lazy"/>
+					<img data-gallery-tag="Mariages" class="gallery-item" src="./assets/images/gallery/mariage/hannah-busing-RvF2R_qMpRk-unsplash-min.jpg" alt="Wedding ceremony captured by Hannah Busing" loading="lazy"/>
+					<img data-gallery-tag="Portrait" class="gallery-item" src="./assets/images/gallery/portraits/ade-tunji-rVkhWWZFAtQ-unsplash-min.jpg" alt="Portrait of Ade Tunji" loading="lazy"/>
+					<img data-gallery-tag="Mariages" class="gallery-item" src="./assets/images/gallery/mariage/jakob-owens-SiniLJkXhMc-unsplash-min.jpg" alt="Wedding celebration with Jakob Owens" loading="lazy"/>
+					<img data-gallery-tag="Portrait" class="gallery-item" src="./assets/images/gallery/portraits/nino-van-prattenburg--443cl1uR_8-unsplash-min.jpg" alt="Portrait of Nino Van Prattenburg" loading="lazy"/>
+					<img data-gallery-tag="Concert" class="gallery-item" src="./assets/images/gallery/concerts/austin-neill-hgO1wFPXl3I-unsplash-min.jpg" alt="Concert featuring Austin Neill" loading="lazy"/>
+					<img data-gallery-tag="Entreprises" class="gallery-item" src="./assets/images/gallery/entreprise/mateus-campos-felipe-Fsgzm8N0hIY-unsplash-min.jpg" alt="Corporate presentation by Mateus Campos Felipe" loading="lazy"/>
 				</div>
 			</div>
 			<div class="quote">
@@ -169,7 +170,19 @@
 	</main>
 
 	<footer>
-		<p>© Nina Carducci - 2024</p>
+		<h2 itemprop="name">Nina Carducci, Photographe</h2>
+		<div class="infos">
+			<div class="location" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+				<p itemprop="streetAddress">68 avenue Alsace-Lorraine</p>
+				<span itemprop="postalCode">33200</span>
+				<span itemprop="addressLocality">Bordeaux</span>
+			</div>
+			<div class="phone">
+				<p itemprop="openingHours" content="Mo-Fr 10:00-19:00">Disponible du lundi au vendredi de 10h à 19h au</p>
+				<strong itemprop="telephone">05 56 67 78 89</strong>
+			</div>
+		</div>
 	</footer>
+	
 </body>
 </html>
