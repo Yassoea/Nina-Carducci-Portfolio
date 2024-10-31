@@ -2,44 +2,38 @@
   $.fn.mauGallery = function(options) {
     var options = $.extend($.fn.mauGallery.defaults, options);
     var tagsCollection = [];
+    
     return this.each(function() {
-      $.fn.mauGallery.methods.createRowWrapper($(this));
+      var gallery = $(this);
+      $.fn.mauGallery.methods.createRowWrapper(gallery);
+      
       if (options.lightBox) {
-        $.fn.mauGallery.methods.createLightBox(
-          $(this),
-          options.lightboxId,
-          options.navigation
-        );
+        $.fn.mauGallery.methods.createLightBox(gallery, options.lightboxId, options.navigation);
       }
+      
       $.fn.mauGallery.listeners(options);
+      
+      var itemsToWrap = [];
 
-      $(this)
-        .children(".gallery-item")
-        .each(function(index) {
-          $.fn.mauGallery.methods.responsiveImageItem($(this));
-          $.fn.mauGallery.methods.moveItemInRowWrapper($(this));
-          $.fn.mauGallery.methods.wrapItemInColumn($(this), options.columns);
-          var theTag = $(this).data("gallery-tag");
-          if (
-            options.showTags &&
-            theTag !== undefined &&
-            tagsCollection.indexOf(theTag) === -1
-          ) {
-            tagsCollection.push(theTag);
-          }
-        });
+      gallery.children(".gallery-item").each(function() {
+        $.fn.mauGallery.methods.responsiveImageItem($(this));
+        $.fn.mauGallery.methods.moveItemInRowWrapper($(this));
+        $.fn.mauGallery.methods.wrapItemInColumn($(this), options.columns);
+        
+        var theTag = $(this).data("gallery-tag");
+        if (options.showTags && theTag && !tagsCollection.includes(theTag)) {
+          tagsCollection.push(theTag);
+        }
+      });
 
       if (options.showTags) {
-        $.fn.mauGallery.methods.showItemTags(
-          $(this),
-          options.tagsPosition,
-          tagsCollection
-        );
+        $.fn.mauGallery.methods.showItemTags(gallery, options.tagsPosition, tagsCollection);
       }
 
-      $(this).fadeIn(500);
+      gallery.fadeIn(500);
     });
   };
+
   $.fn.mauGallery.defaults = {
     columns: 3,
     lightBox: true,
@@ -48,75 +42,42 @@
     tagsPosition: "bottom",
     navigation: true
   };
+
   $.fn.mauGallery.listeners = function(options) {
-    $(".img-fluid").on("click", function() {
-      if (options.lightBox && $(this).prop("tagName") === "IMG") {
+    $(".gallery-item").on("click", function() {
+      if (options.lightBox && $(this).is("img")) {
         $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
-      } else {
-        return;
       }
     });
 
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
-    $(".gallery").on("click", ".mg-prev", () =>
-      $.fn.mauGallery.methods.prevImage(options.lightboxId)
-    );
-    $(".gallery").on("click", ".mg-next", () =>
-      $.fn.mauGallery.methods.nextImage(options.lightboxId)
-    );
+    $(".gallery").on("click", ".mg-prev", () => $.fn.mauGallery.methods.prevImage(options.lightboxId));
+    $(".gallery").on("click", ".mg-next", () => $.fn.mauGallery.methods.nextImage(options.lightboxId));
   };
+
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
-      if (
-        !element
-          .children()
-          .first()
-          .hasClass("row")
-      ) {
+      if (!element.children().first().hasClass("row")) {
         element.append('<div class="gallery-items-row row"></div>');
       }
     },
     wrapItemInColumn(element, columns) {
-      if (columns.constructor === Number) {
-        element.wrap(
-          `<div class='item-column mb-4 col-${Math.ceil(12 / columns)}'></div>`
-        );
-      } else if (columns.constructor === Object) {
-        var columnClasses = "";
-        if (columns.xs) {
-          columnClasses += ` col-${Math.ceil(12 / columns.xs)}`;
-        }
-        if (columns.sm) {
-          columnClasses += ` col-sm-${Math.ceil(12 / columns.sm)}`;
-        }
-        if (columns.md) {
-          columnClasses += ` col-md-${Math.ceil(12 / columns.md)}`;
-        }
-        if (columns.lg) {
-          columnClasses += ` col-lg-${Math.ceil(12 / columns.lg)}`;
-        }
-        if (columns.xl) {
-          columnClasses += ` col-xl-${Math.ceil(12 / columns.xl)}`;
-        }
-        element.wrap(`<div class='item-column mb-4${columnClasses}'></div>`);
-      } else {
-        console.error(
-          `Columns should be defined as numbers or objects. ${typeof columns} is not supported.`
-        );
-      }
+      var colClass = columns.constructor === Number ? `col-${Math.ceil(12 / columns)}` : 
+        `col-xs-${Math.ceil(12 / columns.xs || columns)} col-sm-${Math.ceil(12 / columns.sm || columns)} 
+        col-md-${Math.ceil(12 / columns.md || columns)} col-lg-${Math.ceil(12 / columns.lg || columns)} 
+        col-xl-${Math.ceil(12 / columns.xl || columns)}`;
+      element.wrap(`<div class='item-column mb-4 ${colClass}'></div>`);
     },
     moveItemInRowWrapper(element) {
       element.appendTo(".gallery-items-row");
     },
     responsiveImageItem(element) {
-      if (element.prop("tagName") === "IMG") {
-        element.addClass("img-fluid");
+      if (element.is("img")) {
+        element.addClass("img-fluid").attr("loading", "lazy");
       }
     },
     openLightBox(element, lightboxId) {
-      $(`#${lightboxId}`)
-        .find(".lightboxImage")
-        .attr("src", element.attr("src"));
+      $(`#${lightboxId}`).find(".lightboxImage").attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
     prevImage() {
